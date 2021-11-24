@@ -140,15 +140,11 @@
       }
     </style>
     <script>
-      function callf() {
+      function handleConvertBtnClick() {
         var x = document.getElementById("msg").value;
         document.getElementById("msg").disabled = true;
         document.getElementById("conv").disabled = true;
-        eel.tf(x);
-      }
-
-      function select() {
-        eel.selectFolder();
+        eel.convert(x);
       }
 
       function addText(text) {
@@ -186,7 +182,9 @@
           <input id="msg" />
         </div>
         <div id="covt">
-          <button onclick="callf()" id="conv">Convert to Pubsidian</button>
+          <button onclick="handleConvertBtnClick()" id="conv">
+            Convert to Pubsidian
+          </button>
         </div>
         <div id="selectAttach">
           <p class="instruction">
@@ -202,9 +200,7 @@
     </div>
     <p id="footer">
       Made with ❤️ by
-      <a href="https://github.com/yoursamlan" target="_blank">
-        Amlan Saha Kundu</a
-      >, 2021
+      <a href="https://github.com/Pablion" target="_blank"> Pablo Lion</a>, 2021
     </p>
   </body>
 </html>

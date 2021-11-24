@@ -40,6 +40,7 @@ In `.env` file, you can set the following variables:
 - [ ] tags
 - [ ] make CLI
 - [ ] json schema for `flop-rule.json`
+- [ ] refactor `<br>` part of `addText`
 - [x] rename repo to `flop`
 
 ## Thank list

@@ -84,10 +84,10 @@ def createIndex(uname):
         f.close()
 
 
-def UpImgur(PATH):
+def UpImgur(ImgurPATH):
     CLIENT_ID = "399d1bb9475998b"  # can be used for multiple users
     im = pyimgur.Imgur(CLIENT_ID)
-    uploaded_image = im.upload_image(PATH, title=PATH)
+    uploaded_image = im.upload_image(ImgurPATH, title=ImgurPATH)
     print("Successfully uploaded to: " + str(uploaded_image.link))
     FlopGUI.print_log("Successfully uploaded to: " + str(uploaded_image.link))
     return uploaded_image.link
@@ -144,15 +144,17 @@ def md2html(fname):
         f.write(html)
 
 
+@FlopGUI.expose
 def convert(uname):
-    directory = PATH["OUTPUT_PATH"]
-    if not os.path.isdir(directory + "OUTPUT"):
+    vault_path = PATH["VAULT_PATH"]
+    output_path = PATH["OUTPUT_PATH"]
+    if not os.path.isdir(output_path + "OUTPUT"):
         os.mkdir("OUTPUT")
-    if not os.path.isdir(directory + "OUTPUT/pages"):
+    if not os.path.isdir(output_path + "OUTPUT/pages"):
         os.mkdir("OUTPUT/pages")
     selectFolder()
     file_index = []
-    for filename in os.listdir(directory):
+    for filename in os.listdir(vault_path):
         if filename.endswith(".md"):
             try:
                 md2html(filename[:-3])
@@ -201,13 +203,8 @@ def selectFolder():
     # return directory_path
 
 
-@FlopGUI.expose
-def tf(name):
-    convert(name)
-
-
 def main():
-    if input("Use unfinished GUI instead of CLI? (y/n [n])") in [
+    if input("Use unfinished GUI instead of CLI? (y/n [n]) ") in [
         "y",
         "yes",
         "Y",
@@ -226,6 +223,7 @@ def test():
 
 if __name__ == "__main__":
     test()
+
 
 ## bank
 """
