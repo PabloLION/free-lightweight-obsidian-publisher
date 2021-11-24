@@ -218,25 +218,19 @@ def main():
         pass
 
 
-def set_path(path_name):
-    global PATH
-    PATH[path_name] = dotenv.get_key(".env", path_name) or ""
-    if PATH[path_name] == "":
-        PATH[path_name] = (
-            input("Full Path of your obsidian vault? (saving into .env)") or ""
-        )
-        dotenv.set_key(".env", path_name, PATH[path_name])
-        print(f'{path_name} = "{PATH[path_name]}" Saved to .env')
-
-
 def test():
     global PATH
-    set_path("VAULT_PATH")
-    set_path("OUTPUT_PATH")
-    set_path("ATTACHMENT_PATH")
     print(PATH)
     main()
 
 
 if __name__ == "__main__":
     test()
+
+## bank
+"""
+for root, dirs, files in os.walk(path):
+    for name in files:
+        if name.endswith((".html", ".htm")):
+            # whatever
+"""
