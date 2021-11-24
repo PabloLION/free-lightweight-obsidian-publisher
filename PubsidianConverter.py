@@ -5,7 +5,7 @@ from markdown.extensions.wikilinks import WikiLinkExtension
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import codecs
-import Pof_gui
+import FlopGUI
 
 global PATH
 PATH = {"VAULT_PATH": "", "OUTPUT_PATH": "", "ATTACHMENT_PATH": ""}
@@ -65,7 +65,7 @@ def createJSON(file_index):
     f.write('],\n  "directed": false,\n  "multigraph": false\n}')
     f.close()
     print("\ndata.json has been created successfully.")
-    Pof_gui.print_log(
+    FlopGUI.print_log(
         "<b style='color:green;'>data.json has been created successfully.</b>"
     )
 
@@ -89,7 +89,7 @@ def UpImgur(PATH):
     im = pyimgur.Imgur(CLIENT_ID)
     uploaded_image = im.upload_image(PATH, title=PATH)
     print("Successfully uploaded to: " + str(uploaded_image.link))
-    Pof_gui.print_log("Successfully uploaded to: " + str(uploaded_image.link))
+    FlopGUI.print_log("Successfully uploaded to: " + str(uploaded_image.link))
     return uploaded_image.link
 
 
@@ -135,7 +135,7 @@ def md2html(fname):
             urlInfo = urlparse(img["src"])
             impath = base_attachment + urlInfo.path
             print("Ready to upload " + impath)
-            Pof_gui.print_log("Ready to upload " + impath)
+            FlopGUI.print_log("Ready to upload " + impath)
             imgurl = UpImgur(impath)
             img["src"] = imgurl
         html = str(soup)
@@ -158,7 +158,7 @@ def convert(uname):
                 md2html(filename[:-3])
                 file_index.append(filename[:-3])
                 print("Converting -> " + filename)
-                Pof_gui.print_log("Converting -> " + filename)
+                FlopGUI.print_log("Converting -> " + filename)
             except Exception as e:
                 print(e)
                 continue
@@ -169,21 +169,21 @@ def convert(uname):
         createJSON(file_index)
         createIndex(uname)
         print("Conversion SUCCESSFUL.")
-        Pof_gui.print_log("<b style='color:green;'>Conversion SUCCESSFUL.</b>")
+        FlopGUI.print_log("<b style='color:green;'>Conversion SUCCESSFUL.</b>")
     else:
         print(
             "Nothing to convert in "
             + str(os.path.abspath(os.getcwd()))
             + ". Please make sure the directory has .md files."
         )
-        Pof_gui.print_log(
+        FlopGUI.print_log(
             "Nothing to convert in "
             + str(os.path.abspath(os.getcwd()))
             + ". Please make sure the directory has .md files."
         )
 
 
-@Pof_gui.expose
+@FlopGUI.expose
 def selectFolder():
     global PATH
     if PATH["ATTACHMENT_PATH"]:
@@ -201,7 +201,7 @@ def selectFolder():
     # return directory_path
 
 
-@Pof_gui.expose
+@FlopGUI.expose
 def tf(name):
     convert(name)
 
@@ -213,7 +213,7 @@ def main():
         "Y",
         "YES",
     ]:
-        Pof_gui.init_GUI()
+        FlopGUI.init_GUI()
     else:
         pass
 

@@ -46,7 +46,9 @@ def test():
     global SETTINGS
     get_global_setting("VAULT_PATH")
     get_vault_rule()
+    print("SETTINGS:")
     print(SETTINGS)
+    print("RULE:")
     print(RULE)
 
 
