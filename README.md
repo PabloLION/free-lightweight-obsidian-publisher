@@ -24,7 +24,6 @@ In `.env` file, you can set the following variables:
 
 ## Plan
 
-- [ ] rename repo to `flop`
 - [ ] demo
 - [ ] test
 - [ ] documentation
@@ -41,6 +40,7 @@ In `.env` file, you can set the following variables:
 - [ ] tags
 - [ ] make CLI
 - [ ] json schema for `flop-rule.json`
+- [x] rename repo to `flop`
 
 ## Thank list
 
