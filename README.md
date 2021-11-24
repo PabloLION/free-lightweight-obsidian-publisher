@@ -12,19 +12,19 @@ Run `python3 obsidian-publisher.py`
 
 In `.env` file, you can set the following variables:
 
-| Variable          | Description                                                                 |
-| ----------------- | --------------------------------------------------------------------------- |
-| `VAULT_PATH`      | The path to the obsidian vault, CLI will prompt if you didn't set it        |
-| -                 | Variables below are optional, and will be overridden by the `fop-rule.json` |
-| `OUTPUT_PATH`     | The path where the `OUTPUT` folder generates if not set in `fop-rule.json`  |
-| `ATTACHMENT_PATH` | The path to obsidian attachment folder if not set in `fop-rule.json`        |
-| `FOP_IGNORE`      | A rule for ignoring files, if not set in `fop-rule.json`                    |
+| Variable          | Description                                                                  |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `VAULT_PATH`      | The path to the obsidian vault, CLI will prompt if you didn't set it         |
+| -                 | Variables below are optional, and will be overridden by the `flop-rule.json` |
+| `OUTPUT_PATH`     | The path where the `OUTPUT` folder generates if not set in `flop-rule.json`  |
+| `ATTACHMENT_PATH` | The path to obsidian attachment folder if not set in `flop-rule.json`        |
+| `FLOP_IGNORE`     | A rule for ignoring files, if not set in `flop-rule.json`                    |
 
 `OUTPUT_PATH` and `ATTACHMENT_PATH` with `.obsidian`
 
 ## Plan
 
-- [ ] rename repo to `flop` (search `fop`)
+- [ ] rename repo to `flop`
 - [ ] demo
 - [ ] test
 - [ ] documentation
