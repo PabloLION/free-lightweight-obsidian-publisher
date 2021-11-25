@@ -13,14 +13,21 @@ class FlopSetting:
         # ENV for .env
         # RULE for flop_rule.json
         # SETTINGS for
-        self.env = {"vault_path": "", "output_path": "", "attachment_path": ""}
-        self.rule = {"vault_path": "", "output_path": "", "attachment_path": ""}
-        self.setting = {"vault_path": ""}
-        self.setting.update(self.env)
-        self.setting.update(self.rule)
+        self.env = {"vault_path": ""}
+        self.rule = {"vault_path": ""}
+        self.setting = {
+            "vault_path": "./",
+            "output_path": "./",
+            "attachment_path": "./",
+        }
         self.rule_path = ""
+        self.get_env_setting("vault_path")
+        self.setting.update(self.env)
+        self.get_flop_rule_path()
+        self.get_vault_rule()
+        self.setting.update(self.rule)
 
-    def get_global_setting(self, setting_name):
+    def get_env_setting(self, setting_name):
         self.env[setting_name] = dotenv.get_key(".env", setting_name) or ""
         if self.env[setting_name] == "" and setting_name in NECESSARY_ENV:
             self.env[setting_name] = input(PATH_INPUT_PROMPT["vault_path"]) or ""
@@ -35,20 +42,21 @@ class FlopSetting:
         return self.rule_path
 
     def get_vault_rule(self):
-        self.get_global_setting("vault_path")
+        self.get_env_setting("vault_path")
         self.rule_path = self.get_flop_rule_path()
         if not os.path.exists(self.rule_path):
             with open(self.rule_path, "w") as f:
                 json.dump({"createStamp": datetime.now().timestamp()}, f)
         with open(self.rule_path) as f:
-            RULE = json.load(f)
+            self.rule = json.load(f)
             f.close()
-        return RULE
+        return self.rule
 
 
 if __name__ == "__main__":
+    # for mod test
     flop_setting = FlopSetting()
-    flop_setting.get_global_setting("vault_path")
+    flop_setting.get_env_setting("vault_path")
     flop_setting.get_vault_rule()
     print("ENV:")
     print(flop_setting.env)

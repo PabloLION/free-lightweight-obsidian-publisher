@@ -33,15 +33,17 @@ In `.env` file, you can set the following variables:
 - [ ] select files to publish
   1. not export files starting with `_` (or regex `/$_/`)
   2. use any regex
-  3. use a file possibly named `__export_rule__.json` or `.obsidian/__export_rule__.json`
-  4. offer a GUI to select files. Show the file tree in the output web, use some color to highlight 'exporting files'(saved in `__export_rule__`) and new files, no highlight for 'private files'(will not export, also saved in `__export_rule__`).
-  5. maybe link this `__export_rule__` file with git to track files. (no idea how to do this)
+  3. use a file possibly named `flop-rule.json` or `.obsidian/flop-rule.json`
+  4. offer a GUI to select files. Show the file tree in the output web, use some color to highlight 'exporting files'(saved in `flop-rule.json`) and new files, no highlight for 'private files'(will not export, also saved in `flop-rule.json`).
+  5. maybe link this `flop-rule.json` file with git to track files. (no idea how to do this)
 - [ ] content search
 - [ ] tags
 - [ ] make CLI
 - [ ] json schema for `flop-rule.json`
 - [ ] refactor `<br>` part of `addText`
+- [ ] save setting to `flop-rule.json`
 - [x] rename repo to `flop`
+- [ ] `FlopSetting` use better class structure.
 
 ## Thank list
 

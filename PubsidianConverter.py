@@ -5,12 +5,10 @@ from markdown.extensions.wikilinks import WikiLinkExtension
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import codecs
-import FlopGUI
-
-global PATH
-PATH = {"VAULT_PATH": "", "OUTPUT_PATH": "", "ATTACHMENT_PATH": ""}
+import FlopGUI, FlopSetting
 
 types_of_encoding = ["utf8", "cp1252"]
+flop_setting = FlopSetting.FlopSetting()
 
 
 def links(file_index):
@@ -106,13 +104,13 @@ def highlight(text):
     return t
 
 
-def md2html(fname):
-    inp = fname + ".md"
-    outp = "./OUTPUT/pages/" + fname + ".html"
-    with open("attachment.tmp", "r") as atp:
-        base_attachment = atp.read()
-        atp.close()
-    with open(inp, "r") as f:
+def md2html(filename):
+    input_path = os.path.join(flop_setting.setting["vault_path"], filename + ".md")
+    output_path = os.path.join(
+        flop_setting.setting["output_path"], "OUTPUT", "pages", filename + ".html"
+    )
+    base_attachment = flop_setting.setting["attachment_path"]
+    with open(input_path, "r") as f:
         text = f.read()
         p = re.compile(r"!\[\[(.+?)\]\]")
         text = re.sub(p, r"![\1](\1)", text)
@@ -140,14 +138,14 @@ def md2html(fname):
             img["src"] = imgurl
         html = str(soup)
 
-    with open(outp, "w") as f:
+    with open(output_path, "w") as f:
         f.write(html)
 
 
 @FlopGUI.expose
 def convert(uname):
-    vault_path = PATH["VAULT_PATH"]
-    output_path = PATH["OUTPUT_PATH"]
+    vault_path = flop_setting.setting["vault_path"]
+    output_path = flop_setting.setting["output_path"]
     if not os.path.isdir(output_path + "OUTPUT"):
         os.mkdir("OUTPUT")
     if not os.path.isdir(output_path + "OUTPUT/pages"):
@@ -155,6 +153,7 @@ def convert(uname):
     selectFolder()
     file_index = []
     for filename in os.listdir(vault_path):
+        print(filename)
         if filename.endswith(".md"):
             try:
                 md2html(filename[:-3])
@@ -187,18 +186,20 @@ def convert(uname):
 
 @FlopGUI.expose
 def selectFolder():
-    global PATH
-    if PATH["ATTACHMENT_PATH"]:
-        directory_path = PATH["ATTACHMENT_PATH"]
-    else:
+    if flop_setting.setting["attachment_path"] == "":
+        # flop_setting.setting["attachment_path"] = input(
+        #     "Please enter the attachment path: "
+        # )
+        # flop_setting.save_setting()
+        """
+        below should be GUI part
+        """
         root = tkinter.Tk()
         root.title(string="Choose Obsidian Attachment Directory")
         root.attributes("-topmost", True)
         root.withdraw()
-        directory_path = filedialog.askdirectory() + "/"
-    with open("attachment.tmp", "w") as x:
-        x.write(directory_path)
-        x.close()
+        flop_setting.setting["attachment_path"] = filedialog.askdirectory() + "/"
+        # flop_setting.save_setting()
     # print(directory_path)
     # return directory_path
 
@@ -216,8 +217,7 @@ def main():
 
 
 def test():
-    global PATH
-    print(PATH)
+    print(flop_setting.setting)
     main()
 
 
