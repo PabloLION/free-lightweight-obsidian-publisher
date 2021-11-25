@@ -39,6 +39,7 @@ In `.env` file, you can set the following variables:
 - [ ] content search
 - [ ] tags
 - [ ] make CLI
+  - convert current folder to OUTPUT in current folder then deploy and remove that OUTPUT folder.
 - [ ] json schema for `flop-rule.json`
 - [ ] refactor `<br>` part of `addText`
 - [ ] save setting to `flop-rule.json`

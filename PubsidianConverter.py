@@ -131,11 +131,11 @@ def md2html(filename):
             hr.extract()
         for img in soup.findAll("img"):
             urlInfo = urlparse(img["src"])
-            impath = base_attachment + urlInfo.path
-            print("Ready to upload " + impath)
-            FlopGUI.print_log("Ready to upload " + impath)
-            imgurl = UpImgur(impath)
-            img["src"] = imgurl
+            img_path = base_attachment + urlInfo.path
+            print("Ready to upload " + img_path)
+            FlopGUI.print_log("Ready to upload " + img_path)
+            img_url = UpImgur(img_path)
+            img["src"] = img_url
         html = str(soup)
 
     with open(output_path, "w") as f:

@@ -2,6 +2,7 @@
 /.DS_Store
 
 # Dev
+.nogit
 .nogit/**/*
 
 # Byte-compiled / optimized / DLL files
