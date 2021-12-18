@@ -1,4 +1,5 @@
 import eel
+import EelExpose
 
 global GUI_enabled
 GUI_enabled = False
@@ -23,7 +24,7 @@ def init_GUI():
 
 @check_GUI_enabled
 def print_log(message):
-    eel.addText(message)
+    EelExpose.addText(message)
 
 
 def expose(func):
