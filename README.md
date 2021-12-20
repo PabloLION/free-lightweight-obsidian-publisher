@@ -4,7 +4,11 @@ See the public part of my note on [https://note.pablolion.com/](https://note.pab
 
 ## Usage
 
-### Requirements
+You don't have to download all this git.  
+`deploy-obsidian.zsh` in the root folder does all the job.  
+This is a one-file repo.
+
+### Prerequisites
 
 0. zsh
 1. obsidian-export from [zoni/obsidian-export](https://github.com/zoni/obsidian-export)
@@ -26,6 +30,13 @@ See the public part of my note on [https://note.pablolion.com/](https://note.pab
 4. Run `deploy-obsidian.zsh`, add it to your `.zshrc` file, etc. (If you don't have a netlify-cli, please answer "NO" to the first question.)
 5. Enjoy.
 6. (Optional) Write some feedback in this repo.
+
+## FAQ
+
+### Functionality
+
+Q: Does it have the graph?
+A: No, it doesn't.
 
 ### Trouble shooting
 
