@@ -13,7 +13,17 @@ This is a one-file repo.
 0. zsh
 1. obsidian-export from [zoni/obsidian-export](https://github.com/zoni/obsidian-export)
 2. mkdocs from [mkdocs.org](https://www.mkdocs.org/)
-3. netlify-cli from [netlify.com](https://www.netlify.com/)
+3. [netlify-cli](https://www.netlify.com/products/cli/#install) from [netlify.com](https://www.netlify.com/) then setup CLI with your netlify account.
+4. theme [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
+5. two-space indentation [mdx_truly_sane_lists](https://github.com/radude/mdx_truly_sane_lists)
+
+To install all of them with python pip and yarn (or npm), use this.
+
+```shell
+pip3 install mkdocs mkdocs-material mdx_truly_sane_lists
+# npm install netlify-cli -g
+yarn global add netlify-cli
+```
 
 ### Steps
 
